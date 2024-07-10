@@ -4,12 +4,16 @@ from langchainn.llm_chain import invoke_with_history
 from langchainn.vectorstore import SimpleRetriever
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings
+from chromadb.api.client import SharedSystemClient
 
 router = APIRouter()
 
 chat_history = []
+vectorstore = None
+
 @router.post("/chatbot")
 async def index(request: Request):
+    global vectorstore
     embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     vectorstore = Chroma(persist_directory='./vector_db', embedding_function=embeddings)
     retriever = SimpleRetriever(vectorstore)
@@ -25,4 +29,8 @@ async def index(request: Request):
 async def clear_chat_history():
     global chat_history
     chat_history = []
+    global vectorstore
+    vectorstore._client._system.stop()
+    SharedSystemClient._identifier_to_system.pop(vectorstore._client._identifier, None)
+    vectorstore = None
     return JSONResponse(content={"response": "Chat history cleared!"})

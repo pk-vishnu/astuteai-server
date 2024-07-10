@@ -1,3 +1,3 @@
 myvenv/
-server/__pycache__/
-langchainn/__pycache__/
+**/__pycache__/
+server/routers/__pycache__/
