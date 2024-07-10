@@ -8,8 +8,8 @@ The Astute AI Backend Server is designed to manage and serve a vector store from
 
 ### Routes
 
-- **Create Vector Store (`/create_vector_store`)**: Initializes the vector store from the contents of the CMS.
-- **Refresh Vector Store (`/refresh_vector_store`)**: Updates the vector store whenever the CMS content is modified.
+- **Create Vector Store (GET`/create_vector_store`)**: Initializes the vector store from the contents of the CMS.
+- **Refresh Vector Store (GET`/refresh_vector_store`)**: Updates the vector store whenever the CMS content is modified.
 
 ### Notes
 
@@ -19,8 +19,8 @@ The Astute AI Backend Server is designed to manage and serve a vector store from
 
 ### Routes
 
-- **Chatbot Service (`/chatbot`)**: Asynchronous route to serve the chatbot using the vector store in ChromaDB.
-- **Clear Chat History (`/clear_chat_history`)**: Clears the chat history when a chat session ends.
+- **Chatbot Service (POST`/chatbot`)**: Asynchronous route to serve the chatbot using the vector store in ChromaDB.
+- **Clear Chat History (GET`/chatbot/clear_chat_history`)**: Clears the chat history when a chat session ends.
 
 ### Installation
 
