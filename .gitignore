@@ -1,3 +1,5 @@
 myvenv/
+env/
 **/__pycache__/
 server/routers/__pycache__/
+test.db
